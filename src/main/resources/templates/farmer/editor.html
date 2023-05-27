@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户列表</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        css
+        Copy code
+        h1 {
+            text-align: center;
+            font-size: 24px;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+            font-size: 16px;
+            width: 80%;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+            font-weight: bold;
+        }
+
+        td:last-child {
+            text-align: center;
+        }
+
+        .delete-link {
+            color: red;
+            text-decoration: none;
+        }
+
+        .delete-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<h1>用户列表</h1>
+<table>
+    <thead>
+    <tr>
+        <th>用户名</th>
+        <th>电话号码</th>
+        <th>用户邮箱</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.telephone}"></td>
+        <td th:text="${user.email}"></td>
+        <td>
+            <a th:href="@{~/user/delete/{userid}(userid=${user.id})}" class="delete-link"
+               onclick="return confirm('确定删除？')">删除</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

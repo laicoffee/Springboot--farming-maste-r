@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <title>农产品助农扶农系统</title>
+
+    <meta charset="utf-8">
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+
+
+    <link th:href="@{~/farmer/css/login-style.css}" rel='stylesheet' type='text/css' />
+
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            /*background-image: url('./background.png');*/
+            background-size: cover;
+        }
+        .login{
+            width: 550px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(
+                    to right bottom,
+                    rgba(255,255,255,.7),
+                    rgba(255,255,255,.5),
+                    rgba(255,255,255,.4)
+            );
+            /* 使背景模糊化 */
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px #a29bfe;
+            border-radius: 15px;
+        }
+
+        .table{
+            font: 900 40px '';
+            text-align: center;
+            letter-spacing: 5px;
+            color: #3d3d3d;
+        }
+
+        .box{
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .box input{
+            width: 400px;
+            height: 100%;
+            margin-bottom: 20px;
+            outline: none;
+            border: 0;
+            padding: 10px;
+            background-color: transparent;
+            border-bottom: 3px solid rgb(150, 150, 240);
+            font: 900 16px '';
+        }
+
+        .go{
+            text-align: center;
+            display: block;
+            height: 24px;
+            padding: 12px;
+            font: 900 20px '';
+            border-radius: 10px;
+            margin-top: 20px;
+            color: #fff;
+            letter-spacing: 3px;
+            background-image: linear-gradient(to left,
+            #fd79a8,#a29bf6);
+        }
+        .input_name{
+            width: 100%;
+            color: #fff;
+            outline: none;
+            font-size: 17px;
+            letter-spacing: 0.5px;
+            padding: 15px;
+            box-sizing: border-box;
+            border: none;
+            -webkit-appearance: none;
+            font-family: 'Amiri', serif;
+            background: rgba(0, 0, 0, 0.53);
+        }
+        a{
+            color: #000000;
+            font-weight: 100;
+            width: 100%;
+            padding: 0.4em 0;
+            font-size: 1em;
+            font-weight: 600;
+            letter-spacing: 2px;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: rgba(255, 255, 255, 0.38);
+            font-family: 'Amiri', serif;
+            transition: 0.5s all ease;
+            -webkit-transition: 0.5s all ease;
+            -moz-transition: 0.5s all ease;
+            -o-transition: 0.5s all ease;
+            -ms-transition: 0.5s all ease;
+        }
+        a:hover{
+            color: #fff;
+            box-shadow: 0 20px 5px -10px rgba(0, 0, 0, 0.4);
+            transform: translateY(5px);
+        }
+    </style>
+
+</head>
+
+<body>
+<div id="particles-js"></div>
+<div class="w3ls-pos">
+    <h1 class="">助农扶农系统</h1>
+    <div class="login">
+        <form th:action="@{~/user/logincheck}" method="post">
+            <div class="box">
+                <p class="table">Login</p>
+                <input type="text" name="name" id="name" placeholder="请输入用户名" required="" class="input_name"/>
+                <span  th:text="${error}"></span>
+                <input type="password" name="password" id="password" placeholder="请输入密码" required=""  />
+                <div class="w3ls-bot">
+                    <input type="submit"  class="go" value="登入">
+                    <input id="register-btn" class="go" type="button" value="注册"></input>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div class="copy-wthree">
+        <p>
+        </p>
+    </div>
+</div>
+<script>
+    $("#register-btn").ready(function() {
+        $('#register-btn').click(function() {
+            $.ajax({
+                url: '/user/register',
+                type: 'GET',
+                success: function(data) {
+                    // 在成功获取数据后，可以执行一些操作，例如跳转到注册页面
+                    window.location.href = '/user/register';
+                },
+                error: function(xhr, status, error) {
+                    // 在请求出错时，可以执行一些错误处理操作
+                    console.log(error);
+                }
+            });
+        });
+    });
+</script>
+
+<!--<script th:src="@{~/farmer/js/particles.min.js}"></script>-->
+<!--<script th:src="@{~/farmer/js/index.js}"></script>-->
+<!--<script th:src="@{~/farmer/js/jquery-3.1.1.min.js}"></script>-->
+<script th:src="@{~/farmer/js/particles.min.js}"></script>
+<script th:src="@{~farmer/js/index.js}"></script>
+
+
+
+</body>
+
+</html>
